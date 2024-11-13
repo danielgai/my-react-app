@@ -25,8 +25,7 @@ function Board({ xIsNext, squares, onPlay }) {
     } else {
       nextSquares[i] = "O";
     }
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+    onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
@@ -77,7 +76,7 @@ export default function Game() {
       </div>
       <div className="game-info">
         <ol>{/*TODO*/}</ol>
-      </div>
+      </div>  
     </div>
   );
 }

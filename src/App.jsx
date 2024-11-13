@@ -12,12 +12,18 @@ function Square({ value, onSquareClick }) {
   );
 }
 export default function Board() {
+  const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
   
   function handleClick(i) {
     const nextSquares = squares.slice();
-    nextSquares[i] = "X";
+    if (xIsNext) {
+      nextSquares[i] = "X";
+    } else {
+      nextSquares[i] = "O";
+    }
     setSquares(nextSquares);
+    setXIsNext(!xIsNext);
   }
 
   return(
@@ -37,6 +43,8 @@ export default function Board() {
         <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
         <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
+     {/* "Load" up  the handleClick function with the indice basically pre-loaded in-->pass to rendered
+     square-->Sqaure component will take in that function and assume it for onclick behavior */}
   </>
   );
 }
